@@ -1,25 +1,27 @@
 ---
-version: "3"
 services:
-  db:
-    image: mariadb:11.2
+  heskdb:
+    image: mariadb
     volumes:
-      - db_data:/var/lib/mysql
+      - ./db_data:/var/lib/mysql
     restart: always
     environment:
-      MARIADB_RANDOM_ROOT_PASSWORD: yes
+      TZ: Asia/Shanghai
+      MARIADB_ROOT_PASSWORD: abc123..
       MARIADB_DATABASE: hesk
       MARIADB_USER: hesk
       # Please change the password before deploying.
       MARIADB_PASSWORD: hesk
     
-  wordpress:
+  heskweb:
     depends_on:
-      - db
-    image: ghcr.io/luketainton/hesk:latest
+      - heskdb
+    image: solyhe84/hesk
+    volumes:
+        - ./www:/srv  #Hesk文件目录可映射到寄主机
+        - ./log:/var/log/apache2   #日志文件
     ports:
-      - "80:80"
+      - "8880:80"
+    environment:
+      - TZ=Asia/Shanghai
     restart: always
-volumes:
-  db_data: {}
-...
