@@ -33,7 +33,7 @@ services:
       - heskdb
     image: solyhe84/hesk
     volumes:
-        - ./www:/srv  #Hesk文件目录可映射到寄主机
+        - ./www:/srv  #Hesk文件目录可映射到寄主机,需要设置权限777
         - ./log:/var/log/apache2   #日志文件
     ports:
       - "8880:80"
