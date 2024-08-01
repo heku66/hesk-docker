@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.source="https://github.com/luketainton/hesk-docke
 COPY --chown=www-data:www-data hesk /srv
 COPY vhost.conf /etc/apache2/sites-enabled/000-default.conf
 RUN apk update && \
-    apk add -y libc-client-dev libkrb5-dev --no-install-recommends && \
+    apk add libc-client-dev libkrb5-dev && \
     apk cache clean && \
     rm -rf /var/lib/apt/lists/* && \
     docker-php-ext-configure imap --with-kerberos --with-imap-ssl && \
