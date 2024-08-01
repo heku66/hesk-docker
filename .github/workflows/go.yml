@@ -5,7 +5,7 @@ on:
 
 jobs:
   docker:
-    runs-on: alpine
+    runs-on: alpine-latest
     steps:
       -
         name: Set up QEMU
