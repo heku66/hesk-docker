@@ -1,4 +1,4 @@
-FROM newdeveloper/apache-php
+FROM php:apache
 LABEL maintainer="Luke Tainton <luke@tainton.uk>"
 LABEL org.opencontainers.image.source="https://github.com/luketainton/hesk-docker"
 COPY --chown=www-data:www-data hesk /srv
